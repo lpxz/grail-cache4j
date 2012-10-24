@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="OpenJMSDriver" name="openjms">
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="/home/lpxz/eclipse/workspace/soot24/lib/ant-contrib.jar"/>
+        </classpath>
+    </taskdef>
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../"/>
+    <property name="soot24.location" value="../soot24"/>
+    <property name="log4j.location" value="../log4j"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <property name = "min.support.list" value ="1,2,3,4,5,6,7,8,9,10"/>
+	
+	
+    <path id="cache4j.classpath">
+    	<pathelement location="../pecan/pecan-monitor/pengSootOutput"/>
+    	<pathelement location="../pecan/pecan-monitor/bin"/>
+        <pathelement location="bin"/>
+    </path>
+    <path id="specjbb2005.classpath">
+    	<pathelement location="../pecan/pecan-monitor/pengSootOutput"/>
+    	<pathelement location="../pecan/pecan-monitor/bin"/>
+        <pathelement location="bin"/>
+    </path>
+    <path id="hedc.classpath">
+    	<pathelement location="../pecan/pecan-monitor/pengSootOutput"/>
+    	<pathelement location="../pecan/pecan-monitor/bin"/>
+         <pathelement location="bin"/>
+        <pathelement location="lib/jms.jar"/>
+        <pathelement location="lib/mail.jar"/>
+        <pathelement location="lib/servlet.jar"/>
+    </path>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit4_4.5.0.v20090423/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="log4j.classpath">
+        <pathelement location="${log4j.location}/bin"/>
+        <pathelement location="${log4j.location}/lib/jms.jar"/>
+        <pathelement location="${log4j.location}/lib/mail.jar"/>
+        <pathelement location="${log4j.location}/lib/oro-2.0.8.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    	 <path id="soot24.classpath">
+    	        <pathelement location="${soot24.location}/classes"/>
+    	        <pathelement location="${soot24.location}/lib/jasminclasses-2.3.0.jar"/>
+    	        <pathelement location="${soot24.location}/lib/jedd-runtime.jar"/>
+    	        <pathelement location="${soot24.location}/lib/jedd-translator.jar"/>
+    	        <pathelement location="${soot24.location}/lib/polyglot-1.3.3.jar"/>
+    	        <pathelement location="${soot24.location}/lib/svnant.jar"/>
+    	        <pathelement location="${soot24.location}/lib/svnClientAdapter.jar"/>
+    	        <pathelement location="${soot24.location}/lib/TGGraphLayout.jar"/>
+    	        <pathelement location="${soot24.location}/lib/xmlunit1.0.jar"/>
+    	        <pathelement location="${soot24.location}/lib/log4j.jar"/>
+    	        <pathelement location="${soot24.location}/lib/trove.jar"/>
+    	        <pathelement location="${soot24.location}/lib/jboss-serialization.jar"/>
+    	        <pathelement location="${soot24.location}/lib/jboss-common-4.0.2.jar"/>
+    	        <pathelement location="${soot24.location}/lib/junit-4.4.jar"/>
+    	        <pathelement location="${soot24.location}/javabdd_lib/javabdd_0.6.jar"/>
+    	        <pathelement location="${soot24.location}/lib/ant-antlr.jar"/>
+    	        <pathelement location="${soot24.location}/lib/ant-apache-bcel.jar"/>
+    	        <pathelement location="${soot24.location}/lib/ant-testutil.jar"/>
+    	        <pathelement location="${soot24.location}/lib/ant.jar"/>
+    	        <pathelement location="${soot24.location}/lib/coffer.jar"/>
+    	        <pathelement location="${soot24.location}/lib/java_cup.jar"/>
+    	        <pathelement location="${soot24.location}/lib/JFlex.jar"/>
+    	        <pathelement location="${soot24.location}/lib/junit-4.8.1.jar"/>
+    	        <pathelement location="${soot24.location}/lib/pao.jar"/>
+    	        <pathelement location="${soot24.location}/lib/polyglot.jar"/>
+    	        <pathelement location="${soot24.location}/lib/pth.jar"/>
+    	        <pathelement location="${soot24.location}/lib/xercesImpl.jar"/>
+    	        <pathelement location="${soot24.location}/lib/xml-apis.jar"/>
+    	        <pathelement location="${soot24.location}/lib/ant-contrib.jar"/>
+    	        <pathelement location="${soot24.location}/javabdd_lib/sablejbdd_real.jar"/>
+    	        <pathelement location="${soot24.location}/lib/pia.jar"/>
+    	        <pathelement location="${soot24.location}/lib/poa.jar"/>      
+    	    </path>
+    <path id="openjms.classpath">       
+    	<pathelement location="../pecan/pecan-monitor/pengSootOutput"/>
+    	<pathelement location="../pecan/pecan-monitor/bin"/>
+    	<pathelement location="bin"/>    		
+    	 <!-- run pengSootOutput's version,  reference the monitor version of lockMeta, note the order!-->
+        <pathelement location="lib/jms-1.1.jar"/>
+        <pathelement location="lib/commons-codec-1.3.jar"/>
+        <pathelement location="lib/servlet.jar"/>
+        <pathelement location="lib/derby-10.3.2.1.jar"/>
+        <pathelement location="lib/castor-0.9.5.jar"/>
+        <pathelement location="lib/spice-jndikit-1.2.jar"/>
+        <pathelement location="lib/antlr-2.7.6.jar"/>
+        <pathelement location="lib/oro-2.0.8.jar"/>
+        <pathelement location="lib/commons-dbcp-1.2.1.jar"/>
+        <pathelement location="lib/xml-apis-1.0.b2.jar"/>
+        <pathelement location="lib/xerces-2.4.0.jar"/>
+        <pathelement location="lib/commons-pool-1.2.jar"/>
+        <pathelement location="lib/commons-collections-2.1.jar"/>
+        <pathelement location="lib/commons-logging-1.0.4.jar"/>
+        <path refid="log4j.classpath"/>
+        <path refid="soot24.classpath"/>        	
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="org/exolab/jms/jobserver/"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="examples">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="oswego">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="${log4j.location}/build.xml" dir="${log4j.location}" inheritAll="false" target="clean"/>
+    </target>
+   
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="org/exolab/jms/jobserver/"/>
+            <classpath refid="openjms.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="examples"/>
+            <classpath refid="openjms.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="oswego"/>
+            <classpath refid="openjms.classpath"/>
+        </javac>
+    </target>
+    
+
+
+    <target name="OpenJMSDriver">
+    	<antcall target="build-project"/>
+		<ant antfile="detect.xml" dir="../pecan/pecan-monitor" target="build"/>
+       <!--update the possibly changed lockMeta-->
+    		
+            <for list="${min.support.list}" param="mins">
+				  <sequential>
+					<antcall target="trycatchwrapper">
+						<param name ="realtarget" value ="singleIteration"/>								
+					</antcall>
+				  </sequential>
+			 </for>	      
+    </target>
+
+  <target name="trycatchwrapper">
+    	<trycatch>
+    		<try>
+    		<antcall target="${realtarget}"/>
+    		</try>
+    		 <catch>		     
+    		</catch>
+    		</trycatch>
+    </target>
+
+
+    <target name="singleIteration">    
+        <java classname="net.sf.cache4j.test.Cache4jTester" failonerror="true" fork="yes">
+            <jvmarg line="-noverify"/>
+            <classpath refid="cache4j.classpath"/>
+        </java>
+    </target>
+
+</project>
