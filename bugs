@@ -1,0 +1,126 @@
+load from trace from: /home/lpxz/eclipse/workspacegrail/pecan/pecan-monitor/tmp/traceCache4j
+read edu.hkust.clap.monitor.MonitorData@67219b8c
+
+*** Violation Patterns [ID - Memory Location - Line Number - Thread - Access Type] ***
+
+--------------------------------------
+==short version==
+READ Thread:10 Field:_put
+WRITE Thread:10 Field:_put
+WRITE Thread:15 Field:_put
+===end===
+
+=============long version=============
+READ Thread:10 Field:_put 
+LineNo=304: $l0 = r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _put>
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incPut()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incPut()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java:103)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+WRITE Thread:10 Field:_put 
+LineNo=304: r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _put> = $l1
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incPut()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incPut()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java:103)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+WRITE Thread:15 Field:_put 
+LineNo=304: r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _put> = $l1
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incPut()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incPut()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java:103)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+==============end=====================
+
+==short version==
+READ Thread:9 Field:_miss
+WRITE Thread:9 Field:_miss
+WRITE Thread:16 Field:_miss
+===end===
+
+=============long version=============
+READ Thread:9 Field:_miss 
+LineNo=300: $l0 = r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _miss>
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incMisses()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incMisses()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.get(java.lang.Object)(SynchronizedCache.java:139)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:446)
+
+WRITE Thread:9 Field:_miss 
+LineNo=300: r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _miss> = $l1
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incMisses()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incMisses()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.get(java.lang.Object)(SynchronizedCache.java:139)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:446)
+
+WRITE Thread:16 Field:_miss 
+LineNo=300: r0.<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: long _miss> = $l1
+msig:<net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl: void incMisses()>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache$CacheInfoImpl.incMisses()(SynchronizedCache.java)
+net.sf.cache4j.impl.SynchronizedCache.get(java.lang.Object)(SynchronizedCache.java:139)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:446)
+
+==============end=====================
+
+==short version==
+READ Thread:10 Field:ID
+WRITE Thread:10 Field:ID
+WRITE Thread:15 Field:ID
+===end===
+
+==short version==
+READ Thread:10 Field:_memorySize
+WRITE Thread:10 Field:_memorySize
+WRITE Thread:15 Field:_memorySize
+===end===
+
+=============long version=============
+READ Thread:10 Field:_memorySize 
+LineNo=106: $l4 = r0.<net.sf.cache4j.impl.SynchronizedCache: long _memorySize>
+msig:<net.sf.cache4j.impl.SynchronizedCache: void put(java.lang.Object,java.lang.Object)>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+WRITE Thread:10 Field:_memorySize 
+LineNo=106: r0.<net.sf.cache4j.impl.SynchronizedCache: long _memorySize> = $l6
+msig:<net.sf.cache4j.impl.SynchronizedCache: void put(java.lang.Object,java.lang.Object)>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+WRITE Thread:15 Field:_memorySize 
+LineNo=106: r0.<net.sf.cache4j.impl.SynchronizedCache: long _memorySize> = $l6
+msig:<net.sf.cache4j.impl.SynchronizedCache: void put(java.lang.Object,java.lang.Object)>
+ctxt:
+net.sf.cache4j.impl.SynchronizedCache.put(java.lang.Object,java.lang.Object)(SynchronizedCache.java)
+net.sf.cache4j.test.SynchronizedCacheTest$TThread.run()(SynchronizedCacheTest.java:447)
+
+==============end=====================
+
+total bugs: 4
+total time (msec): 402
+
+
+-------------------------------------
+
+Number of Threads: 9
+Number of Shared Variables: 5
+Number of Lock Nodes: 22058
+Number of Message Nodes: 32
+Number of Non-Method Entry/Exit Nodes: 22419
+Number of Read/Write Nodes: 329
+Number of Total Nodes: 22419
+
+Number of BUGS (no contexts): 0
+
+Number of BUGS: 0
+
