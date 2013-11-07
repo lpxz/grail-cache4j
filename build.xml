@@ -3,13 +3,12 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="cache4j">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="cache4j">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
     <path id="cache4j.classpath">
         <pathelement location="bin"/>
     </path>
@@ -17,13 +16,11 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src/main">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src/test">
-                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -58,5 +55,41 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="SynchronizedCacheTest">
+    	 <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+    	            <arg line="1"/>
+    	            <classpath refid="cache4j.classpath"/>
+    	        </java>
+    	 <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+    	            <arg line="2"/>
+    	            <classpath refid="cache4j.classpath"/>
+    	        </java>
+	 <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+	            <arg line="4"/>
+	            <classpath refid="cache4j.classpath"/>
+	        </java>
+    	 <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+    	            <arg line="8"/>
+    	            <classpath refid="cache4j.classpath"/>
+    	        </java>
+        <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+            <arg line="12"/>
+            <classpath refid="cache4j.classpath"/>
+        </java>
+    	 <java classname="net.sf.cache4j.test.SynchronizedCacheTest" failonerror="true" fork="yes">
+    	            <arg line="16"/>
+    	            <classpath refid="cache4j.classpath"/>
+    	        </java>
+    </target>
+    <target name="Cache4jTester">
+        <java classname="net.sf.cache4j.test.Cache4jTester" failonerror="true" fork="yes">
+            <classpath refid="cache4j.classpath"/>
+        </java>
+    </target>
+    <target name="BlockingCacheTest">
+        <java classname="net.sf.cache4j.test.BlockingCacheTest" failonerror="true" fork="yes">
+            <classpath refid="cache4j.classpath"/>
+        </java>
     </target>
 </project>

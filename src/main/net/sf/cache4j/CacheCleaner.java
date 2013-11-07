@@ -9,47 +9,50 @@
 
 package net.sf.cache4j;
 
+import net.sf.cache4j.impl.BlockingCache;
+import net.sf.cache4j.impl.CacheConfigImpl;
+
 
 /**
- * Класс CacheCleaner выполняет очистку устаревших объектов
+ * пїЅпїЅпїЅпїЅпїЅ CacheCleaner пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  */
 
 public class CacheCleaner extends Thread {
-// ----------------------------------------------------------------------------- Константы
-// ----------------------------------------------------------------------------- Атрибуты класса
+// ----------------------------------------------------------------------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// ----------------------------------------------------------------------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     /**
-     * Интервал очистки
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
      */
     private long _cleanInterval;
 
     /**
-     * true если поток находится в спячке
+     * true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
      */
     private boolean _sleep = false;
 
-// ----------------------------------------------------------------------------- Статические переменные
-// ----------------------------------------------------------------------------- Конструкторы
+// ----------------------------------------------------------------------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// ----------------------------------------------------------------------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     /**
-     * Конструктор
-     * @param cleanInterval интервал(в миллисекундах) с которым нужно выполнять очистку
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     * @param cleanInterval пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
      */
     public CacheCleaner(long cleanInterval) {
         _cleanInterval = cleanInterval;
 
         setName(this.getClass().getName());
         setDaemon(true);
-        //устанавливать минимальный приоритет не нужно потому что удаление устаревших
-        //объектов не менее важная задача
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         //setPriority(Thread.MIN_PRIORITY);
     }
 
-// ----------------------------------------------------------------------------- Public методы
+// ----------------------------------------------------------------------------- Public пїЅпїЅпїЅпїЅпїЅпїЅ
 
     /**
-     * Устанавливает интервал очистки
-     * @param cleanInterval интервал(в миллисекундах) с которым нужно выполнять очистку
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+     * @param cleanInterval пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
      */
     public void setCleanInterval(long cleanInterval) {
         _cleanInterval = cleanInterval;
@@ -62,10 +65,13 @@ public class CacheCleaner extends Thread {
     }
 
     /**
-     * Основной метод. Для всех кешей вызывается метод <code>clean</code>
+     * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ <code>clean</code>
      */
     public void run() {
+    	int iterations=0;
         while(true)  {
+        	iterations ++;
+        	if(iterations>=2) break;
             try {
                 CacheFactory cacheFactory = CacheFactory.getInstance();
                 Object[] objIdArr = cacheFactory.getCacheIds();
@@ -80,20 +86,65 @@ public class CacheCleaner extends Thread {
                 t.printStackTrace();
             }
 
-            _sleep = true;
-            try {
-                sleep(_cleanInterval);
-            } catch (Throwable t){
-            } finally {
-                _sleep = false;
+            // synchronized(this) // grail.
+           synchronized ("haha") // afix or axis
+            { // 30059 vs 15 msec.
+	            _sleep = true;
+	            try {
+	            	System.out.println(_cleanInterval);
+	            	
+	                sleep(_cleanInterval);
+	            } catch (Throwable t){
+	            } finally {
+	                _sleep = false;
+	            }
             }
         }
     }
+    
+    // each thread executes 100 iterations. 
+    public static void main(String[] args) throws Exception
+    {
+    	int threadNo = Integer.parseInt(args[0]);
+        CacheFactory cf = CacheFactory.getInstance();
+        long ttl = 100;
+        long cleanInterval = ttl*2;
+        long sleep = ttl*3;
 
-// ----------------------------------------------------------------------------- Package scope методы
-// ----------------------------------------------------------------------------- Protected методы
-// ----------------------------------------------------------------------------- Private методы
-// ----------------------------------------------------------------------------- Inner классы
+        BlockingCache cache = new BlockingCache();
+        CacheConfig cacheConfig = new CacheConfigImpl("cacheId", null, ttl, 0, 0, 0, null, "lru", "strong");
+        cache.setCacheConfig(cacheConfig);
+        for (int i = 0; i <1000; i++) {
+            cache.put(new Long(i), new Long(i));
+        }
+        cf.addCache(cache);
+    	
+        CacheCleaner[] threads = new CacheCleaner[threadNo];
+        long start = System.currentTimeMillis();
+        for(int i=0;i< threadNo ; i++)
+        {
+        	threads[i] = new CacheCleaner(2);
+        	threads[i].start();
+        }
+//        for(int i=0;i< threadNo ; i++)
+//        {
+//        	threads[i].setCleanInterval(10);
+//        }
+        
+        for(int i=0;i< threadNo ; i++)
+        {
+        	threads[i].join();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("duration: " + (end-start));
+        
+        
+    }
+
+// ----------------------------------------------------------------------------- Package scope пїЅпїЅпїЅпїЅпїЅпїЅ
+// ----------------------------------------------------------------------------- Protected пїЅпїЅпїЅпїЅпїЅпїЅ
+// ----------------------------------------------------------------------------- Private пїЅпїЅпїЅпїЅпїЅпїЅ
+// ----------------------------------------------------------------------------- Inner пїЅпїЅпїЅпїЅпїЅпїЅ
 
 }
 
